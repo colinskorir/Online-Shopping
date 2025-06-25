@@ -11,13 +11,14 @@ const Register = ({ onRegister }) => {
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow">
       <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
       <Formik
-        initialValues={{ email: '', password: '', confirmPassword: '' }}
+        initialValues={{ email: '', password: '', confirmPassword: '', phone: '' }}
         validationSchema={Yup.object({
           email: Yup.string().email('Invalid email').required('Required'),
           password: Yup.string().min(6, 'Minimum 6 characters').required('Required'),
           confirmPassword: Yup.string()
             .oneOf([Yup.ref('password'), null], 'Passwords must match')
             .required('Required'),
+          phone: Yup.string().required('Phone number is required'),
         })}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           setRegisterError('');
@@ -26,6 +27,7 @@ const Register = ({ onRegister }) => {
             await axios.post('/api/users/register', {
               email: values.email,
               password: values.password,
+              phone: values.phone,
             });
             setRegisterSuccess('Registration successful! You can now log in.');
             resetForm();
@@ -41,6 +43,11 @@ const Register = ({ onRegister }) => {
             <label className="block mb-1">Email</label>
             <Field name="email" type="email" className="w-full px-3 py-2 border rounded focus:outline-none focus:ring" />
             <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
+          </div>
+          <div>
+            <label className="block mb-1">Phone Number</label>
+            <Field name="phone" type="text" className="w-full px-3 py-2 border rounded focus:outline-none focus:ring" />
+            <ErrorMessage name="phone" component="div" className="text-red-500 text-sm mt-1" />
           </div>
           <div>
             <label className="block mb-1">Password</label>
