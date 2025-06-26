@@ -4,7 +4,6 @@ from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from flask_cors import CORS
 from datetime import datetime
-from twilio.rest import Client
 import requests
 import base64
 import time
@@ -24,8 +23,6 @@ TWILIO_ACCOUNT_SID = 'your_account_sid'
 TWILIO_AUTH_TOKEN = 'your_auth_token'
 TWILIO_PHONE_NUMBER = '+1234567890'  # Your Twilio number
 
-client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-
 MPESA_CONSUMER_KEY = 'YOUR_CONSUMER_KEY'
 MPESA_CONSUMER_SECRET = 'YOUR_CONSUMER_SECRET'
 MPESA_SHORTCODE = '174379'  # or your real shortcode
@@ -34,12 +31,14 @@ MPESA_BASE_URL = 'https://sandbox.safaricom.co.ke'  # Use production URL for liv
 CALLBACK_URL = 'https://yourdomain.com/api/mpesa/callback'
 
 def send_payment_prompt(phone_number, amount):
-    message = client.messages.create(
-        body=f'Please pay ${amount:.2f} for your order at ShopEase.',
-        from_=TWILIO_PHONE_NUMBER,
-        to=phone_number
-    )
-    return message.sid
+    # This function is removed as per the instructions
+    pass
+
+def my_function():
+    pass
+
+def broken_function():
+    pass
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
