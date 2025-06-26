@@ -8,6 +8,7 @@ from twilio.rest import Client
 import requests
 import base64
 import time
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -270,5 +271,6 @@ def login():
     token = create_access_token(identity=user.id)
     return jsonify({'token': token})
 
+port = int(os.environ.get('PORT', 5000))
 if __name__ == '__main__':
-    app.run(port=5000, debug=True) 
+    app.run(host='0.0.0.0', port=port) 
