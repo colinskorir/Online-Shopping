@@ -1,6 +1,6 @@
 import React from 'react';
 
-const shopHeroImg = 'https://via.placeholder.com/800x256.png?text=Online+Shop';
+const shopHeroImg = '/4e79d5e0-1b42-40ef-ae67-bf4fe102c8dc.jpg';
 
 const Home = () => (
   <div className="flex flex-col items-center justify-center min-h-[60vh] bg-gradient-to-br from-blue-50 to-purple-100 rounded-xl shadow-lg p-10 mt-8">
